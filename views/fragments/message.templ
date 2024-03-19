@@ -1,0 +1,10 @@
+package views
+
+templ Message(msg string) {
+	<div hx-swap-oob="beforeend:#messages">
+		<div class="p-1">
+			<p class="text-xs">Anonymous</p>
+			<p class="font-medium">{ msg }</p>
+		</div>
+	</div>
+}
