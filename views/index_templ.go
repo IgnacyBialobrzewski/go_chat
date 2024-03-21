@@ -38,7 +38,7 @@ func Index() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"my-2 overflow-auto flex-1 flex flex-col-reverse gap-2\" id=\"messages\"></div><form class=\"flex flex-col gap-2\" ws-send hx-trigger=\"submit\"><input type=\"text\" name=\"message\" class=\"bg-slate-200 p-2 rounded-md font-medium\" placeholder=\"Your message\"> <input type=\"submit\" value=\"Send\" class=\"transition-all hover:scale-95 hover:cursor-pointer bg-blue-500 p-2 rounded-md text-white font-medium border-2 border-solid border-blue-500 hover:bg-white hover:text-blue-500\"></form></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</h1><div class=\"my-2 overflow-hidden flex-1 flex flex-col-reverse gap-2\" id=\"messages\"></div><form class=\"flex flex-col gap-2\" ws-send hx-trigger=\"submit\"><input type=\"text\" name=\"message\" class=\"bg-slate-200 p-2 rounded-md font-medium\" placeholder=\"Your message\"> <input type=\"submit\" value=\"Send\" class=\"transition-all hover:scale-95 hover:cursor-pointer bg-blue-500 p-2 rounded-md text-white font-medium border-2 border-solid border-blue-500 hover:bg-white hover:text-blue-500\"></form></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
