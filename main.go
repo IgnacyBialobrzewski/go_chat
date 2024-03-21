@@ -11,13 +11,15 @@ import (
 )
 
 var (
-	ServerHost string = "127.0.0.1"
+	ServerHost string = "0.0.0.0"
 	ServerPort string = os.Getenv("PORT")
 )
 
 func main() {
 	if ServerPort == "" {
+		ServerHost = "127.0.0.1"
 		ServerPort = "3000"
+		fmt.Println("No PORT env variable detected")
 	}
 
 	fmt.Printf("Starting a HTTP server at http://%s:%s\n", ServerHost, ServerPort)
