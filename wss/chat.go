@@ -6,28 +6,25 @@ import (
 	"log"
 	"strings"
 
+	"github.com/IgnacyBialobrzewski/go-chat/models"
 	"github.com/IgnacyBialobrzewski/go-chat/views/fragments"
 	"golang.org/x/net/websocket"
 )
 
-type ChatMessage struct {
-	Content string `json:"message"`
-}
-
 type WsServer struct {
-	clients map[*websocket.Conn][]ChatMessage
+	clients map[*websocket.Conn][]models.ChatMessage
 }
 
 func NewChatWss() *WsServer {
 	return &WsServer{
-		clients: make(map[*websocket.Conn][]ChatMessage, 1024),
+		clients: make(map[*websocket.Conn][]models.ChatMessage, 1024),
 	}
 }
 
 func (self *WsServer) HandleWs(client *websocket.Conn) {
 	log.Println("incoming connection from: ", client.RemoteAddr())
 
-	self.clients[client] = []ChatMessage{}
+	self.clients[client] = []models.ChatMessage{}
 	self.readWs(client)
 }
 
@@ -44,7 +41,9 @@ func (self *WsServer) readWs(client *websocket.Conn) {
 			break
 		}
 
-		var msg ChatMessage
+		msg := models.ChatMessage{
+			Sender: client,
+		}
 
 		err = json.Unmarshal(msgBuf[:bytesRead], &msg)
 
@@ -64,8 +63,9 @@ func (self *WsServer) readWs(client *websocket.Conn) {
 	}
 }
 
-func (self *WsServer) emitMsg(msg ChatMessage) {
+func (self *WsServer) emitMsg(msg models.ChatMessage) {
 	for client := range self.clients {
-		views.Message(msg.Content).Render(context.Background(), client)
+		isSenderReceiver := client == msg.Sender
+		views.Message(msg.Content, isSenderReceiver).Render(context.Background(), client)
 	}
 }

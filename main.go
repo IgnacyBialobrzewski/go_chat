@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	ServerHost string = "0.0.0.0"
+	ServerHost string = "127.0.0.1"
 	ServerPort string = os.Getenv("PORT")
 )
 
